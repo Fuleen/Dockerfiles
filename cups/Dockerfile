@@ -1,4 +1,4 @@
-FROM arm64v8/debian:stable-slim
+FROM multiarch/debian-debootstrap:arm64-sid-slim as builder
 
 # Install the packages we need. Avahi will be included
 RUN apt-get update && apt-get install -y \

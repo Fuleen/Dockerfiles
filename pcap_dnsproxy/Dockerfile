@@ -1,4 +1,3 @@
-#FROM arm64v8/debian:sid-slim as builder
 FROM multiarch/debian-debootstrap:arm64-sid-slim as builder
 
 RUN set -ex &&\
@@ -21,7 +20,6 @@ RUN cd /tmp && \
         chmod +x /pcap_dnsproxy/Pcap_DNSProxy
 
 
-#FROM arm64v8/debian:sid-slim
 FROM multiarch/debian-debootstrap:arm64-sid-slim
 
 WORKDIR /pcap_dnsproxy
