@@ -1,14 +1,12 @@
-FROM multiarch/debian-debootstrap:arm64-sid-slim
+FROM multiarch/debian-debootstrap:arm64-stretch-slim
 
-RUN apt update \
-  && apt-get -y install autoconf g++ python-dev python-pip python-pbkdf2 git \
-
-  && cd / && git clone https://github.com/binux/qiandao.git && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir -r /qiandao/requirements.txt \
-
+RUN apt-get update \
+  && apt-get -y install bash autoconf g++ git python-dev python-pip python-pbkdf2 \
+  && cd / && git clone https://github.com/binux/qiandao.git && pip install --no-cache-dir -r /qiandao/requirements.txt \ 
   && apt-get purge -y --auto-remove autoconf g++ git \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+  
 WORKDIR /qiandao
 
 VOLUME ["/qiandao/"]
